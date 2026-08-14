@@ -13,11 +13,11 @@ import sharp from "sharp";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const libraryDir = join(root, "assets", "photo-library");
-const renderDir = join(root, "assets", "product-renders");
+const equipmentDir = join(root, "assets", "equipment-photos");
 const productDir = join(root, "public", "products");
 const mediaDir = join(root, "public", "media");
 const catalogPath = join(root, "data", "catalog.json");
-mkdirSync(renderDir, { recursive: true });
+mkdirSync(equipmentDir, { recursive: true });
 
 mkdirSync(productDir, { recursive: true });
 mkdirSync(mediaDir, { recursive: true });
@@ -93,40 +93,46 @@ function pickLibrary(preferredId, index, used) {
 
 async function main() {
   for (const name of mediaNames) {
+    if (name === "hero") continue;
     const src =
       library.find((f) => f.toLowerCase().startsWith(name)) ||
       library[mediaNames.indexOf(name) % library.length];
     const dest = join(mediaDir, `${name}.webp`);
-    if (name === "hero") {
-      await toWebp(join(libraryDir, src), dest, 2400, 1280, { position: "attention" });
-    } else {
+    try {
       await toWebp(join(libraryDir, src), dest, 1800, 1200, { position: "attention" });
+    } catch (err) {
+      console.warn(`skip media ${name}: ${err.message || err}`);
     }
   }
 
-  const renders = readdirSync(renderDir).filter((f) =>
+  const equipment = readdirSync(equipmentDir).filter((f) =>
     /\.(png|jpe?g|webp)$/i.test(f),
   );
   const usedPrimary = new Set();
   for (const [index, product] of catalog.products.entries()) {
-    const render = renders.find((f) =>
+    const shot = equipment.find((f) =>
       f.toLowerCase().startsWith(`${product.handle}.`),
     );
-    const libFile = render
+    const libFile = shot
       ? null
       : pickLibrary(product.photoId, index, usedPrimary);
-    const file = render
-      ? join(renderDir, render)
+    const file = shot
+      ? join(equipmentDir, shot)
       : join(libraryDir, libFile);
     if (libFile) usedPrimary.add(libFile);
     const out = join(productDir, `${product.handle}.webp`);
-    await toWebp(file, out, 1200, 1400, {
-      position: render ? "centre" : positions[index % positions.length],
-      fit: render ? "contain" : "cover",
-    });
+    try {
+      await toWebp(file, out, 1200, 1400, {
+        position: shot ? "attention" : positions[index % positions.length],
+        fit: "cover",
+      });
+    } catch (err) {
+      console.warn(`skip ${product.handle}: ${err.message || err}`);
+      continue;
+    }
 
     const gallery = [`/products/${product.handle}.webp`];
-    if (!render) {
+    if (!shot) {
       const extras = [1, 2]
         .map((offset) => library[(index + offset * 7) % library.length])
         .filter(Boolean);

@@ -17,17 +17,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="hero">
-        <div className="hero__media">
-          <Image
-            src="/media/hero.webp"
-            alt="Rows of tomatoes ripening inside a working greenhouse"
-            fill
-            priority
-            sizes="100vw"
-          />
-          <div className="hero__veil" />
-        </div>
+      <section className="hero hero--plain">
         <div className="hero__copy">
           <p className="eyebrow" style={{ color: "var(--lime)" }}>
             Garden & growing supply

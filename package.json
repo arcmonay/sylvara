@@ -9,6 +9,7 @@
     "lint": "eslint",
     "catalog": "node scripts/generate-catalog.mjs",
     "photos": "node scripts/fetch-photos.mjs",
+    "photos:equipment": "node scripts/fetch-equipment-photos.mjs",
     "images": "node scripts/apply-photo-images.mjs",
     "catalog:csv": "node scripts/export-shopify-csv.mjs"
   },

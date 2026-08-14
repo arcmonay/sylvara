@@ -400,6 +400,12 @@ h3,
   color: #faf6ee;
 }
 
+.hero--plain {
+  min-height: auto;
+  align-items: center;
+  padding: 4.5rem 0 3.8rem;
+}
+
 .hero__media {
   position: absolute;
   inset: 0;
@@ -421,6 +427,10 @@ h3,
   z-index: 1;
   width: min(1240px, calc(100% - 2rem));
   margin: 0 auto 3.5rem;
+}
+
+.hero--plain .hero__copy {
+  margin: 0 auto;
 }
 
 .hero__copy h1 {
@@ -583,11 +593,11 @@ h3,
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 1rem;
-  background: var(--bg);
+  background: var(--bg-deep);
 }
 
 .product-card__media img {
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .pill {
@@ -678,7 +688,7 @@ h3,
 .pdp-gallery .visual {
   border-radius: 1.2rem;
   overflow: hidden;
-  background: var(--bg);
+  background: var(--bg-deep);
   aspect-ratio: 4 / 5;
   position: relative;
 }

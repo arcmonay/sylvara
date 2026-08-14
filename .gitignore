@@ -42,3 +42,8 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Wikimedia source JPEGs — regenerate with npm run photos:equipment
+/assets/equipment-photos/*.jpg
+/assets/equipment-photos/*.jpeg
+/assets/equipment-photos/*.png
