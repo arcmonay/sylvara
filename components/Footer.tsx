@@ -66,7 +66,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="wrap legal">© 2025 HarvestHome. Grow better. Live greener.</div>
+      <div className="wrap legal">© 2026 HarvestHome. Grow better. Live greener.</div>
     </footer>
   );
 }
