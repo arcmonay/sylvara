@@ -7,7 +7,7 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="product-card">
       <Link href={`/shop/${product.handle}`} className="product-card__media">
-        <ProductVisual product={product} className="absolute inset-0" />
+        <ProductVisual product={product} />
         {product.isBundle ? (
           <span className="pill" style={{ position: "absolute", top: 10, left: 10 }}>
             System

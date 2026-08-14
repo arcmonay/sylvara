@@ -16,6 +16,7 @@ export function ProductGallery({ product }: { product: Product }) {
           src={src}
           alt={product.title}
           fill
+          unoptimized
           className="object-cover"
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -31,7 +32,7 @@ export function ProductGallery({ product }: { product: Product }) {
               onClick={() => setActive(index)}
               aria-label={`Photo ${index + 1}`}
             >
-              <Image src={image} alt="" fill className="object-cover" sizes="96px" />
+              <Image src={image} alt="" fill unoptimized className="object-cover" sizes="96px" />
             </button>
           ))}
         </div>

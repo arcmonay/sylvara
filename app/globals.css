@@ -596,6 +596,11 @@ h3,
   background: var(--bg-deep);
 }
 
+.product-card__media > * {
+  position: absolute;
+  inset: 0;
+}
+
 .product-card__media img {
   object-fit: cover;
 }
