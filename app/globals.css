@@ -583,11 +583,11 @@ h3,
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 1rem;
-  background: var(--bg-deep);
+  background: var(--bg);
 }
 
 .product-card__media img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .pill {
@@ -678,7 +678,7 @@ h3,
 .pdp-gallery .visual {
   border-radius: 1.2rem;
   overflow: hidden;
-  background: var(--bg-deep);
+  background: var(--bg);
   aspect-ratio: 4 / 5;
   position: relative;
 }

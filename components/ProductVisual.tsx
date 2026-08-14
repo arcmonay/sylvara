@@ -12,13 +12,13 @@ export function ProductVisual({
 }) {
   const src = product.image || `/products/${product.handle}.webp`;
   return (
-    <div className={`relative overflow-hidden bg-[var(--bg-deep)] ${className}`.trim()}>
+    <div className={`relative overflow-hidden bg-[var(--bg)] ${className}`.trim()}>
       <Image
         src={src}
         alt={product.title}
         fill
         sizes="(max-width: 768px) 90vw, 50vw"
-        className="object-cover"
+        className="object-contain"
         priority={priority}
       />
     </div>
