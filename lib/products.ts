@@ -38,6 +38,13 @@ export function getFeaturedProducts(limit = 8): Product[] {
   return data.products.slice(0, limit);
 }
 
+export function getHighTicketProducts(limit = 8): Product[] {
+  return data.products
+    .filter((p) => p.handle !== "pro-quote" && p.price >= 800)
+    .sort((a, b) => b.price - a.price)
+    .slice(0, limit);
+}
+
 export function getBundles(): Product[] {
   return data.products.filter((p) => p.isBundle && p.handle !== "pro-quote");
 }

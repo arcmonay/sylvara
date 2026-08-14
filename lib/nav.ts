@@ -23,7 +23,7 @@ export const PATHS = [
   { slug: "indoors", title: "I Want to Grow Indoors", href: "/paths/indoors", description: "Lights, shelves, and hydroponic greens." },
   { slug: "heirloom", title: "I Want Heirloom Seeds", href: "/seeds/vault", description: "Open-pollinated food crops and the vault they live in." },
   { slug: "habitat", title: "I Want to Attract Birds & Pollinators", href: "/collections/backyard-wildlife", description: "Feeders, houses, and native plantings." },
-  { slug: "serious", title: "I'm a Serious Grower", href: "/paths/serious", description: "Controlled-environment equipment and Pro gear." },
+  { slug: "serious", title: "I'm a Serious Grower", href: "/paths/serious", description: "Production rooms, acre irrigation, tanks, and industrial compost." },
 ];
 
 export const MEGA = [
@@ -32,19 +32,19 @@ export const MEGA = [
     href: "/collections/hydroponics",
     links: [
       { label: "Complete systems", href: "/shop?sub=complete-systems" },
+      { label: "Recirculating DWC", href: "/shop?sub=rdwc" },
+      { label: "Dutch bucket", href: "/shop?sub=dutch-bucket" },
+      { label: "Stainless tanks", href: "/shop?sub=stainless-tanks" },
       { label: "NFT", href: "/shop?sub=nft-systems" },
-      { label: "Deep Water Culture", href: "/shop?sub=dwc" },
-      { label: "Ebb & Flow", href: "/shop?sub=ebb-flow" },
-      { label: "Meters & treatment", href: "/shop?sub=meters" },
     ],
   },
   {
     title: "Indoor Growing",
     href: "/collections/indoor-growing",
     links: [
+      { label: "Production rooms", href: "/shop?sub=cea-rooms" },
       { label: "LED grow lights", href: "/shop?sub=led-lights" },
       { label: "Grow tents", href: "/shop?sub=grow-tents" },
-      { label: "Shelving", href: "/shop?sub=shelving" },
       { label: "Climate & fans", href: "/shop?sub=ventilation" },
       { label: "Controllers", href: "/shop?sub=controllers" },
     ],
@@ -75,10 +75,10 @@ export const MEGA = [
     title: "Irrigation & Water",
     href: "/collections/irrigation",
     links: [
-      { label: "Drip kits", href: "/shop?sub=drip-irrigation" },
-      { label: "Timers & controllers", href: "/shop?sub=timers" },
-      { label: "Rain storage", href: "/shop?sub=rain-storage" },
-      { label: "Parts & fittings", href: "/shop?sub=irrigation-parts" },
+      { label: "Commercial irrigation", href: "/shop?sub=commercial-irrigation" },
+      { label: "Fertigation", href: "/shop?sub=fertigation" },
+      { label: "Cisterns & tanks", href: "/shop?sub=rain-storage" },
+      { label: "Septic tanks", href: "/shop?sub=septic-tanks" },
       { label: "Build your system", href: "/irrigation-builder" },
     ],
   },
@@ -87,7 +87,7 @@ export const MEGA = [
     href: "/collections/sustainable-gardening",
     links: [
       { label: "Raised beds", href: "/shop?sub=raised-beds" },
-      { label: "Compost", href: "/shop?sub=composting" },
+      { label: "Industrial composters", href: "/shop?sub=industrial-compost" },
       { label: "Soil & fertility", href: "/shop?sub=soil" },
       { label: "Birds & feeders", href: "/collections/backyard-wildlife" },
       { label: "Pollinator homes", href: "/shop?sub=pollinator-homes" },

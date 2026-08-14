@@ -59,7 +59,7 @@ export default async function ShopPage({ searchParams }: Props) {
       </div>
       {subs.length ? (
         <div className="filters">
-          {subs.slice(0, 14).map((s) => (
+          {subs.slice(0, 24).map((s) => (
             <Link
               key={s.handle}
               href={`/shop?collection=${s.collection}&sub=${s.handle}`}

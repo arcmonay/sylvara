@@ -6,12 +6,14 @@ import {
   getBundles,
   getCollections,
   getFeaturedProducts,
+  getHighTicketProducts,
 } from "@/lib/products";
 
 export default function HomePage() {
   const collections = getCollections().filter((c) => c.handle !== "growing-systems");
   const featured = getFeaturedProducts(8);
   const systems = getBundles().slice(0, 4);
+  const production = getHighTicketProducts(8);
 
   return (
     <>
@@ -19,7 +21,7 @@ export default function HomePage() {
         <div className="hero__media">
           <Image
             src="/media/hero.webp"
-            alt="Hands harvesting vegetables from a backyard bed"
+            alt="Rows of tomatoes ripening inside a working greenhouse"
             fill
             priority
             sizes="100vw"
@@ -36,8 +38,9 @@ export default function HomePage() {
             Live greener.
           </h1>
           <p>
-            Everything you need to grow food, conserve water and build a more
-            sustainable garden — from a balcony tomato to a working greenhouse.
+            Everything you need to grow food, store water, and run a working
+            garden — from a balcony tomato to a full irrigation system, indoor
+            production room, or industrial compost line.
           </p>
           <div className="hero__actions">
             <Link href="/shop" className="btn btn-accent">
@@ -147,6 +150,7 @@ export default function HomePage() {
             <p>
               Garden size, beds, water source, distance, automation. We will not
               sell you a kit that assumes the spigot is next to the tomatoes.
+              Acre drip, cisterns, fertigation, and septic tanks live here too.
             </p>
             <Link href="/irrigation-builder" className="btn" style={{ marginTop: "1rem" }}>
               Start the builder
@@ -165,6 +169,23 @@ export default function HomePage() {
             <Link href="/bundles">All systems</Link>
           </div>
           <ProductGrid products={systems} />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="section__head">
+            <div>
+              <p className="eyebrow">Production floor</p>
+              <h2>The equipment a serious garden actually runs.</h2>
+            </div>
+            <Link href="/paths/serious">Serious growing</Link>
+          </div>
+          <p style={{ maxWidth: "40rem", color: "var(--muted)", margin: "-0.6rem 0 1.4rem" }}>
+            Stainless mixing tanks, recirculating DWC, acre drip, in-vessel composters,
+            and septic systems — food production at the scale of a greenhouse bay or a farm block.
+          </p>
+          <ProductGrid products={production} />
         </div>
       </section>
 

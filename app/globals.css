@@ -683,6 +683,27 @@ h3,
   position: relative;
 }
 
+.pdp-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+}
+
+.pdp-thumbs button {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 2px solid transparent;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  padding: 0;
+  background: var(--bg-deep);
+  cursor: pointer;
+}
+
+.pdp-thumbs button.is-active {
+  border-color: var(--forest);
+}
+
 .pdp-buy h1 {
   margin: 0.2rem 0 0.6rem;
   font-size: clamp(2rem, 4vw, 3rem);

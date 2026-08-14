@@ -34,13 +34,14 @@ const header = [
   "Variant Requires Shipping",
   "Variant Taxable",
   "Image Src",
+  "Image Position",
   "Image Alt Text",
   "Status",
 ].join(",");
 
-const rows = catalog.products.map((p) => {
-  const imagePath = p.image || `/products/${p.handle}.webp`;
-  const imageSrc = `${imageBase}${imagePath}`;
+const rows = [];
+for (const p of catalog.products) {
+  const images = (p.images?.length ? p.images : [p.image || `/products/${p.handle}.webp`]).filter(Boolean);
   const grams = Math.max(20, Math.round(Number(p.weightLbs || 1) * 453.592));
   const type =
     catalog.collections.find((c) => c.handle === p.collection)?.title ??
@@ -58,33 +59,71 @@ const rows = catalog.products.map((p) => {
       .join("")}</ul>`,
   ].join("");
 
-  return [
-    p.handle,
-    p.title,
-    body,
-    p.vendor || "HarvestHome",
-    type,
-    (p.tags || []).join(", "),
-    "TRUE",
-    optionName,
-    optionValue,
-    p.sku,
-    String(grams),
-    "shopify",
-    p.inStock ? String(p.stockQty || 25) : "0",
-    "deny",
-    "manual",
-    Number(p.price).toFixed(2),
-    p.compareAtPrice ? Number(p.compareAtPrice).toFixed(2) : "",
-    "TRUE",
-    "TRUE",
-    imageSrc,
-    p.title,
-    p.quoteOnly ? "draft" : "active",
-  ]
-    .map(esc)
-    .join(",");
-});
+  images.forEach((imagePath, index) => {
+    const imageSrc = `${imageBase}${imagePath}`;
+    if (index === 0) {
+      rows.push(
+        [
+          p.handle,
+          p.title,
+          body,
+          p.vendor || "HarvestHome",
+          type,
+          (p.tags || []).join(", "),
+          "TRUE",
+          optionName,
+          optionValue,
+          p.sku,
+          String(grams),
+          "shopify",
+          p.inStock ? String(p.stockQty || 25) : "0",
+          "deny",
+          "manual",
+          Number(p.price).toFixed(2),
+          p.compareAtPrice ? Number(p.compareAtPrice).toFixed(2) : "",
+          "TRUE",
+          "TRUE",
+          imageSrc,
+          "1",
+          p.title,
+          p.quoteOnly ? "draft" : "active",
+        ]
+          .map(esc)
+          .join(","),
+      );
+    } else {
+      rows.push(
+        [
+          p.handle,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          imageSrc,
+          String(index + 1),
+          p.title,
+          "",
+        ]
+          .map(esc)
+          .join(","),
+      );
+    }
+  });
+}
 
 writeFileSync(
   join(root, "data", "shopify-products.csv"),

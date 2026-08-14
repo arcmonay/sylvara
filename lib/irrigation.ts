@@ -22,6 +22,7 @@ export const IRRIGATION_STEPS: {
       { value: "small", label: "One or two beds (up to 100 sq ft)" },
       { value: "medium", label: "A typical backyard plot" },
       { value: "large", label: "Greenhouse or 400+ sq ft" },
+      { value: "acre", label: "An acre, estate, or farm block" },
     ],
   },
   {
@@ -84,6 +85,11 @@ export function buildIrrigationPlan(a: IrrigationAnswers): IrrigationPlan {
     handles.push("raised-bed-irrigation-kit");
     title = "Two-bed drip";
     summary = "A manifold and drip line sized for a pair of 4×8s.";
+  } else if (a.size === "acre") {
+    handles.push("acre-drip-package", "zone-12-controller", "filter-station-2inch");
+    title = "A one-acre drip system";
+    summary = "Mainline, zones, and filtration for a food block — not a backyard starter kit.";
+    notes.push("We will want a site sketch before freight. The package assumes a roughly rectangular acre.");
   } else if (a.size === "large" || a.source === "greenhouse") {
     handles.push("gh-drip-kit", "garden-irrigation-kit");
     title = "Greenhouse and plot irrigation";
@@ -102,10 +108,16 @@ export function buildIrrigationPlan(a: IrrigationAnswers): IrrigationPlan {
   }
   if (a.source === "well") {
     handles.push("canister-filter", "disc-filter", "pressure-regulator");
+    if (a.size === "acre" || a.size === "large") {
+      handles.push("well-pump-irrigation", "filter-station-2inch", "vfd-pump-skid");
+    }
     notes.push("Well grit clogs emitters. Filter first, then regulate, then drip.");
   }
   if (a.source === "rain") {
     handles.push("rain-barrel-50", "transfer-pump", "disc-filter");
+    if (a.size === "acre" || a.size === "large") {
+      handles.push("cistern-1000", "vfd-pump-skid");
+    }
     notes.push("Gravity from a barrel rarely runs emitters. Budget a pump.");
   }
 

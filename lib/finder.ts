@@ -72,7 +72,7 @@ export const FINDER_STEPS: {
       { value: "under-100", label: "Under $100", hint: "Seed, tools, a starter kit" },
       { value: "100-400", label: "$100–$400", hint: "A complete small system" },
       { value: "400-1500", label: "$400–$1,500", hint: "Beds, lights, irrigation" },
-      { value: "1500-plus", label: "$1,500+", hint: "Greenhouse or full backyard" },
+      { value: "1500-plus", label: "$1,500+", hint: "Greenhouse, production room, or acre drip" },
     ],
   },
 ];
@@ -98,7 +98,15 @@ export function runFinder(answers: FinderAnswers): FinderResult {
   let summary =
     "Start with a bed, seed, and a way to water it. Everything else is optional until the first harvest.";
 
-  if (answers.where === "indoor" || answers.space === "tiny") {
+  if (answers.budget === "1500-plus" && answers.where === "indoor") {
+    systemHandle = "production-room-bundle";
+    headline = "An indoor production room";
+    summary = "A sealed tent, production LED, climate stack, and recirculating DWC — food at room scale.";
+  } else if (answers.budget === "1500-plus" && answers.where === "hydroponic") {
+    systemHandle = "rdwc-24-site";
+    headline = "A recirculating production line";
+    summary = "Twenty-four DWC sites, a stainless tank, and the lights a room actually needs.";
+  } else if (answers.where === "indoor" || answers.space === "tiny") {
     systemHandle = answers.grow === "year-round-greens" ? "backyard-hydroponics-starter" : "indoor-herb-garden";
     headline = "An indoor kitchen garden";
     summary = "A lit shelf and herbs (or a small DWC) will feed you without a yard.";
@@ -121,6 +129,10 @@ export function runFinder(answers: FinderAnswers): FinderResult {
     systemHandle = "pollinator-garden-kit";
     headline = "A pollinator patch";
     summary = "Seed, a bee hotel, and a map. Habitat is a planting, not a poster.";
+  } else if (answers.budget === "1500-plus" && answers.space === "large" && answers.where === "backyard") {
+    systemHandle = "acre-drip-package";
+    headline = "A production water system";
+    summary = "Acre drip, filtration, and a controller. Measure the block before you order freight.";
   } else if (answers.budget === "1500-plus" && answers.where === "backyard") {
     systemHandle = "self-sufficient-backyard";
     headline = "A closed-loop backyard";

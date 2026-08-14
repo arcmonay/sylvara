@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGrid } from "@/components/ProductCard";
-import { ProductVisual } from "@/components/ProductVisual";
 import {
   averageRating,
   formatMoney,
@@ -57,11 +57,7 @@ export default async function ProductPage({ params }: PageProps<"/shop/[handle]"
     <div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <article className="pdp">
-        <div className="pdp-gallery">
-          <div className="visual" style={{ minHeight: "28rem" }}>
-            <ProductVisual product={product} priority className="absolute inset-0" />
-          </div>
-        </div>
+        <ProductGallery product={product} />
         <div className="pdp-buy">
           <p className="pdp-collection">
             {collection ? (
