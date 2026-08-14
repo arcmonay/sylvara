@@ -6,12 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "catalog": "node scripts/generate-catalog.mjs",
+    "photos": "node scripts/fetch-photos.mjs",
+    "images": "node scripts/apply-photo-images.mjs",
+    "catalog:csv": "node scripts/export-shopify-csv.mjs"
   },
   "dependencies": {
     "next": "16.3.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -22,5 +27,9 @@
     "eslint-config-next": "16.3.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "sharp@0.35.3": true,
+    "sharp@0.34.5": true
   }
 }
